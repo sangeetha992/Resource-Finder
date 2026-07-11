@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/static/style.css">
+<h1>BLOOD BANKS</h1>
+
+<div class="container">
+{% for i in data %}
+<div class="card">
+<h3>{{i[1]}}</h3>
+<p>{{i[2]}}</p>
+<p>{{i[3]}}</p>
+
+<a href="{{i[4]}}" target="_blank">
+<button>MAP</button></a>
+
+<a href="tel:{{i[3]}}">
+<button>CALL</button></a>
+
+</div>
+{% endfor %}
+</div>

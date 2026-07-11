@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: linear-gradient(to right, #0f9db5, #0a6f86);
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            letter-spacing: 2px;
+        }
+
+        .form {
+            background: white;
+            color: black;
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background: #0f9db5;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .actions a {
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 6px;
+            color: white;
+            font-size: 12px;
+        }
+
+        .map { background: blue; }
+        .call { background: green; }
+        .delete { background: red; }
+    </style>
+</head>
+
+<body>
+
+<h1>{{ title }}</h1>
+
+<div class="form">
+    <form method="POST" action="/add_{{ title.lower().replace(' ', '') }}">
+        <input name="name" placeholder="Name" required>
+        <input name="location" placeholder="Location" required>
+        <input name="phone" placeholder="Phone" required>
+        <button>Add</button>
+    </form>
+</div>
+
+<div class="container">
+
+{% for h in data %}
+<div class="card">
+    <h3>{{ h.name }}</h3>
+    <p>{{ h.location }}</p>
+    <p>{{ h.phone }}</p>
+
+    <div class="actions">
+        <a class="map" href="https://www.google.com/maps/search/{{ h.name }}" target="_blank">MAP</a>
+        <a class="call" href="tel:{{ h.phone }}">CALL</a>
+
+        {% if title == "HOSPITALS" %}
+        <a class="delete" href="/delete_hospital/{{ h.id }}">DELETE</a>
+        {% elif title == "BLOOD BANKS" %}
+        <a class="delete" href="/delete_bloodbank/{{ h.id }}">DELETE</a>
+        {% else %}
+        <a class="delete" href="/delete_ngo/{{ h.id }}">DELETE</a>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+</body>
+</html>

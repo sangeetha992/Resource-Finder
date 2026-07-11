@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EDIT HOSPITAL</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f9db5;
+            color: white;
+            text-align: center;
+        }
+
+        form {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #0f9db5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>EDIT HOSPITAL</h1>
+
+<form method="POST" action="/update_hospital/{{ hospital.id }}">
+    <input type="text" name="name" value="{{ hospital.name }}" required>
+    <input type="text" name="location" value="{{ hospital.location }}" required>
+    <input type="text" name="phone" value="{{ hospital.phone }}" required>
+
+    <button type="submit">UPDATE</button>
+</form>
+
+</body>
+</html>
